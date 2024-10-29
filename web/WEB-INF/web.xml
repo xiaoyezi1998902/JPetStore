@@ -75,4 +75,31 @@
         <servlet-name>RemoveCartItemServlet</servlet-name>
         <url-pattern>/removeCartItem</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <servlet-class>web.servlet.NewOrderFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <url-pattern>/newOrderForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewOrderServlet</servlet-name>
+        <servlet-class>web.servlet.NewOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewOrderServlet</servlet-name>
+        <url-pattern>/newOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>web.servlet.SearchProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/searchProducts</url-pattern>
+    </servlet-mapping>
 </web-app>

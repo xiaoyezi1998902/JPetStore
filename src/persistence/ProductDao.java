@@ -11,4 +11,5 @@ public interface ProductDao {
     Product getProduct(String var1);
 
     List<Product> searchProductList(String var1);
+
 }
