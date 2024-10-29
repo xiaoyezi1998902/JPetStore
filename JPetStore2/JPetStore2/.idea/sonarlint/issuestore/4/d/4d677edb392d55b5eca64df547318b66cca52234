@@ -1,0 +1,13 @@
+
+g
+java:S1192%"LDefine a constant instead of duplicating this literal "description" 3 times.(ßºå«üÿÿÿÿ
+`
+java:S1192#"JDefine a constant instead of duplicating this literal "PRODUCTID" 3 times.(ž¼ªƒ
+a
+java:S1192&"KDefine a constant instead of duplicating this literal "categoryId" 3 times.(Ùñ™ó
+j
+java:S20956"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‘ÿªÉúÿÿÿÿ
+j
+java:S2095N"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ž½•‡ýÿÿÿÿ
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ô´Ý”ûÿÿÿÿ

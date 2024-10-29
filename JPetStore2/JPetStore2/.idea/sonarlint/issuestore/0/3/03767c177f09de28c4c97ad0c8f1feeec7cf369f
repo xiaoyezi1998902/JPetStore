@@ -1,0 +1,7 @@
+
+“
+java:S1104"WMake categoryDao a static final constant or non-public and provide accessors if needed.(´ó¢J$5390a3db-1f4f-4b4d-9873-b755614219b0
+—
+java:S1104"VMake productDao a static final constant or non-public and provide accessors if needed.(„–£üÿÿÿÿJ$4ce9026d-137b-48b5-8d17-054923fa117d
+
+java:S1104"SMake itemDao a static final constant or non-public and provide accessors if needed.(ÊœôJ$82655cb6-103a-4ae9-9243-a5a4fe766470

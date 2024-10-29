@@ -1,0 +1,22 @@
+
+
+java:S1192 "KDefine a constant instead of duplicating this literal "searchList" 3 times.(¦¿ñ©8ÆÌƒ›­2J$7007929a-a7d1-4d6a-b3e1-1ac404f2fa03
+¡	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ËŸ™ûúÿÿÿÿ8Š…„›­2J$03995a81-e6f8-4a23-a311-7e2159b5d4a6
+œ	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(‰œÀŒ8Š…„›­2J$864ff3ac-ec61-4e41-b275-6e2eef1ec5e3
+¡	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(»ïõóüÿÿÿÿ8Š…„›­2J$57396b3d-881f-4b3e-9777-798b671090de
+Ÿ
+java:S1450"]Remove the "catalogService" field and declare it as a local variable in the relevant methods.(º°¸8Œ…„›­2J$d3a789ca-3ded-4c84-986f-009b674a90c2
+k
+java:S1185"(Remove this method to simply inherit it.(¹Â·Š8…„›­2J$76266ccb-17c6-4612-9b9a-81be291e6b87
+¢
+java:S1989"_Handle the following exceptions that could be thrown by "doGet": ServletException, IOException.(Ôü™—8…„›­2J$96972b52-abda-4c05-a2c8-63cb11f4a277
+¤
+java:S1989!"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(¹îÏº8‘…„›­2J$b35b5410-d3b4-4cf2-9e84-17b4f18861ce
+¤
+java:S1989&"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(¹îÏº8‘…„›­2J$2720ef67-e27c-475f-b32a-8a00910e4145
+©
+java:S1989+"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(üæ‡çøÿÿÿÿ8’…„›­2J$1cbba394-f70d-4b82-95c5-4c7cc87f0358
+©
+java:S1989."aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(÷÷Ò¹ıÿÿÿÿ8–…„›­2J$2d60d855-2d36-4f19-b7ec-c63851e1715e
+š
+java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(º°¸8–…„›­2J$1cf00889-d6d8-42aa-ad34-369e29c69389
