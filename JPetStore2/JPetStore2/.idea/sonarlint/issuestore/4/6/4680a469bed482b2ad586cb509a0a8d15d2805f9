@@ -1,7 +1,0 @@
-
-š
-java:S1450"^Remove the "categoryService" field and declare it as a local variable in the relevant methods.(’¤ïJ$70e850ed-cfc6-4eef-8f53-8ffcb5baec87
-¢
-java:S1989"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(»ö­•ÿÿÿÿÿJ$6d3c69db-96db-4203-99b6-ecaeeb74abdf
-”
-java:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(’¤ïJ$8ae7737e-8656-43ba-b437-94df5b693dac

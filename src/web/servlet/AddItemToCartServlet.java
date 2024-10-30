@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AddItemToCartServlet extends HttpServlet {
-    private CategoryService categoryService;
+    private CategoryService categoryService = new CategoryService();
     private static final String CART_FORM = "/WEB-INF/jsp/cart/cart.jsp";
 
     @Override

@@ -135,7 +135,7 @@ public class ItemDaoImpl implements ItemDao {
             e.printStackTrace();
         }
 
-        return Collections.emptyList();
+        return itemList;
     }
 
     @Override
