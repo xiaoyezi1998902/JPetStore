@@ -1,7 +1,9 @@
 package web.servlet;
 
 import domain.Account;
+import domain.Product;
 import service.AccountService;
+import service.CategoryService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class SignOnServlet extends HttpServlet {
     private static final String SIGN_ON_FORM = "/WEB-INF/jsp/account/signon.jsp";
@@ -25,7 +28,8 @@ public class SignOnServlet extends HttpServlet {
             }
         else {
             AccountService accountService = new AccountService();
-            Account loginAccount = accountService.getAccount(username,password);
+            Account loginAccount = accountService.getAccount(username, password);
+
             if(loginAccount == null){
                 this.msg="用户名或密码错误";
                 req.setAttribute("signOnMsg", this.msg);
@@ -33,12 +37,12 @@ public class SignOnServlet extends HttpServlet {
             } else {
                 HttpSession session = req.getSession();
                 session.setAttribute("loginAccount", loginAccount);
-                //Object a=session.getAttribute("loginAccount");
-                //if (loginAccount.isListOption()){
-                    //CatalogService catalogService=new CatalogService;
-                    //list<Product> myList =catalogService.getProductListByCatagory(loginAccount.getFavouriteCatagoryId());
-                    //session.setAttribute("mylist", mylist);
-                //}
+
+                if (loginAccount.isListOption()){
+                    CategoryService catalogService=new CategoryService();
+                    List<Product> myList =catalogService.getProductListByCategory(loginAccount.getFavouriteCategoryId());
+                    session.setAttribute("myList", myList);
+                }
                 resp.sendRedirect("mainForm");
             }
         }

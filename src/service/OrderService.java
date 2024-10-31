@@ -53,7 +53,6 @@ public class OrderService {
             lineItem.setOrderId(order.getOrderId());
             this.lineItemDao.insertLineItem(lineItem);
         }
-
     }
 
     public Order getOrder(int orderId) {

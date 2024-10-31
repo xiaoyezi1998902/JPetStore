@@ -95,6 +95,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ViewOrderServlet</servlet-name>
+        <servlet-class>web.servlet.ViewOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewOrderServlet</servlet-name>
+        <url-pattern>/viewOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>SearchProductServlet</servlet-name>
         <servlet-class>web.servlet.SearchProductServlet</servlet-class>
     </servlet>

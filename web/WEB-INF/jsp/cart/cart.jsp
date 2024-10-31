@@ -22,7 +22,7 @@
                     <th>&nbsp;</th>
                 </tr>
 
-                <c:if test="${sessionScope.cart.numberOfItems == 0}">
+                <c:if test="${sessionScope.cart.numberOfItems == 0 || sessionScope.cart == null}">
                     <tr>
                         <td colspan="8"><b>Your cart is empty.</b></td>
                     </tr>
@@ -60,15 +60,13 @@
             <a href="newOrderForm" class="Button">Proceed to Checkout</a>
     </c:if></div>
 
-<%--    <div id="MyList">--%>
-<%--        <c:if test="${sessionScope.accountBean != null}">--%>
-<%--            <c:if test="${!sessionScope.accountBean.authenticated}">--%>
-<%--                <c:if test="${!empty sessionScope.accountBean.account.listOption}">--%>
-<%--                    <%@ include file="IncludeMyList.jsp"%>--%>
-<%--                </c:if>--%>
-<%--            </c:if>--%>
-<%--        </c:if>--%>
-<%--    </div>--%>
+    <div id="MyList">
+        <c:if test="${sessionScope.loginAccount != null}">
+            <c:if test="${!empty sessionScope.loginAccount.listOption}">
+                <%@ include file="includeMyList.jsp"%>
+            </c:if>
+        </c:if>
+    </div>
 
     <div id="Separator">&nbsp;</div>
 </div>

@@ -5,11 +5,9 @@ import persistence.DBUtil;
 import persistence.OrderDao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
@@ -196,7 +194,7 @@ public class OrderDaoImpl implements OrderDao {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ORDER);
             preparedStatement.setInt(1, var1.getOrderId());
             preparedStatement.setString(2, var1.getUsername());
-            preparedStatement.setDate(3, (Date) var1.getOrderDate());
+            preparedStatement.setDate(3, new java.sql.Date(var1.getOrderDate().getTime()));
             preparedStatement.setString(4, var1.getShipAddress1());
             preparedStatement.setString(5, var1.getShipAddress2());
             preparedStatement.setString(6, var1.getShipCity());
@@ -219,7 +217,12 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.setString(23, var1.getExpiryDate());
             preparedStatement.setString(24, var1.getCardType());
             preparedStatement.setString(25, var1.getLocale());
-            preparedStatement.executeUpdate();
+            int ret = preparedStatement.executeUpdate();
+
+            if (ret == 1) {
+                System.out.println("正常");
+            }
+
             DBUtil.closePreparedStatement(preparedStatement);
             DBUtil.closeConnection(connection);
         } catch (Exception e) {
@@ -233,8 +236,8 @@ public class OrderDaoImpl implements OrderDao {
             Connection connection = DBUtil.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ORDER_STATUS);
             preparedStatement.setInt(1, var1.getOrderId());
-            preparedStatement.setInt(2, var1.getOrderId());
-            preparedStatement.setDate(3, (Date) var1.getOrderDate());
+            preparedStatement.setInt(2, var1.getLineItems().size());
+            preparedStatement.setDate(3, new java.sql.Date(var1.getOrderDate().getTime()));
             preparedStatement.setString(4, var1.getStatus());
             preparedStatement.executeUpdate();
             DBUtil.closePreparedStatement(preparedStatement);
