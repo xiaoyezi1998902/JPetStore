@@ -7,40 +7,50 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class RegisterFormServlet extends HttpServlet {
-    private static final String SIGN_ON_FORM = "/WEB-INF/jsp/account/register.jsp";
+        private static final String NEW_ACCOUNT_FORM = "/WEB-INF/jsp/account/register.jsp";
+    private static final String SIGN_ON_FORM = "/WEB-INF/jsp/account/signon.jsp";
     private String username;
     private String password;
     private String msg;
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       req.getRequestDispatcher(NEW_ACCOUNT_FORM).forward(req, resp);
+    }
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.username = req.getParameter("username");
         this.password = req.getParameter("password");
         if(!validate()){
-            req.setAttribute("signOnMsg", this.msg);
-            req.getRequestDispatcher(SIGN_ON_FORM).forward(req, resp);
+            req.setAttribute("registerMsg", this.msg);
+            req.getRequestDispatcher(NEW_ACCOUNT_FORM).forward(req, resp);
         }
         else {
+            Account account = new Account();
+            account.setUsername(this.username);
+            account.setPassword(this.password);
+            account.setListOption(true);
+            account.setCity("555");
+            account.setCountry("555");
+            account.setState("55");
+            account.setZip("555");
+            account.setEmail("555");
+            account.setPhone("555");
+            account.setBannerName("555");
+            account.setAddress1("555");
+            account.setAddress2("555");
+            account.setBannerOption(1);
+            account.setLanguagePreference("555");
+            account.setFirstName("555");
+            account.setLastName("555");
+            account.setStatus("55");
+            account.setFavouriteCategoryId("CATS");
             AccountService accountService = new AccountService();
-            Account loginAccount=accountService.getAccount(username,password);
-            if(loginAccount==null){
-                this.msg="用户名或密码错误";
-                req.getRequestDispatcher(SIGN_ON_FORM).forward(req, resp);
-            }else {
-                HttpSession session = req.getSession();
-                session.setAttribute("loginAccount", loginAccount);
-                //Object a=session.getAttribute("loginAccount");
-                //if (loginAccount.isListOption()){
-                //CatalogService catalogService=new CatalogService;
-                //list<Product> myList =catalogService.getProductListByCatagory(loginAccount.getFavouriteCatagoryId());
-                //session.setAttribute("mylist", mylist);
-                //}
-                resp.sendRedirect("mainform");
+            accountService.insertAccount(account);
+            req.getRequestDispatcher(SIGN_ON_FORM).forward(req, resp);
             }
-        }
+
     }
     private boolean validate(){
         if(this.username==null || this.username.equals("")){
@@ -55,3 +65,5 @@ public class RegisterFormServlet extends HttpServlet {
 
     }
 }
+
+
