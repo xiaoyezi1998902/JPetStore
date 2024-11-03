@@ -1,7 +1,10 @@
 package web.servlet;
 
-import domain.Account;
-import domain.Product;
+import domain.*;
+import persistence.CartDao;
+import persistence.ItemDao;
+import persistence.implement.CartDaoImpl;
+import persistence.implement.ItemDaoImpl;
 import service.AccountService;
 import service.CategoryService;
 
@@ -40,9 +43,19 @@ public class SignOnServlet extends HttpServlet {
 
                 if (loginAccount.isListOption()){
                     CategoryService catalogService=new CategoryService();
-                    List<Product> myList =catalogService.getProductListByCategory(loginAccount.getFavouriteCategoryId());
+                    List<Product> myList = catalogService.getProductListByCategory(loginAccount.getFavouriteCategoryId());
                     session.setAttribute("myList", myList);
                 }
+
+                CartDao cartDao = new CartDaoImpl();
+
+                List<CartItem> cartItemList = cartDao.getCartItemsByUserId(username);
+
+                Cart cart = new Cart();
+                cart.setCartItemList(cartItemList);
+                session.setAttribute("cart", cart);
+                session.setAttribute("reminder", null);
+
                 resp.sendRedirect("mainForm");
             }
         }

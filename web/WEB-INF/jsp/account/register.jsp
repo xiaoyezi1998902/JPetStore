@@ -1,6 +1,6 @@
 <%@ include file="../common/top.jsp"%>
 <div id="Catalog">
-    <form action="registerform" method="post">
+    <form action="registerForm" method="post">
         <p>User Information</p>
         <c:if test="${requestScope.registerMsg !=null}">
             <p><font color="red">${requestScope.signOnMsg}</font></p>

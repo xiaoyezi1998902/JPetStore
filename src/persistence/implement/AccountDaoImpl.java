@@ -101,7 +101,7 @@ public class AccountDaoImpl implements AccountDao {
         account.setLanguagePreference(resultSet.getString("languagePreference"));
         account.setFavouriteCategoryId(resultSet.getString("favouriteCategoryid"));
         account.setListOption(resultSet.getBoolean("listoption"));
-        account.setBannerOption(resultSet.getInt("banneroption"));
+        account.setBannerOption(resultSet.getInt("banneroption") == 1 ? true : false);
         account.setBannerName(resultSet.getString("BANNERNAME"));
 
         return account;
@@ -137,7 +137,7 @@ public class AccountDaoImpl implements AccountDao {
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PROFILE);
             preparedStatement.setString(1,account.getLanguagePreference());
             preparedStatement.setString(2,account.getFavouriteCategoryId());
-            preparedStatement.setInt(3,account.getBannerOption());
+            preparedStatement.setInt(3,account.isBannerOption() ? 1 : 0);
             preparedStatement.setString(4,account.getUsername());
             preparedStatement.executeUpdate();
             DBUtil.closePreparedStatement(preparedStatement);
@@ -192,7 +192,7 @@ public class AccountDaoImpl implements AccountDao {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PROFILE);
             preparedStatement.setString(1,account.getLanguagePreference());
             preparedStatement.setString(2,account.getFavouriteCategoryId());
-            preparedStatement.setInt(3,account.getBannerOption());
+            preparedStatement.setInt(3,account.isBannerOption() ? 1 : 0);
             preparedStatement.setString(4,account.getUsername());
             preparedStatement.executeUpdate();
             DBUtil.closePreparedStatement(preparedStatement);
@@ -215,14 +215,4 @@ public class AccountDaoImpl implements AccountDao {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
-        AccountDaoImpl accountDao = new AccountDaoImpl();
-        Account account = new Account();
-        account.setUsername("er");
-        account.setPassword("er");
-        Account account1 = accountDao.getAccountByUsernameAndPassword(account);
-        System.out.println(account1.getBannerName());
-
-    }
-
 }

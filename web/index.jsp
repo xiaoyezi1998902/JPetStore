@@ -9,11 +9,12 @@
 <html>
 <head>
     <title>JPetStore</title>
+    <link rel="StyleSheet" href="css/mypetstore.css" type="text/css" media="screen"/>
 </head>
 <body>
 <h1>This is a project named JPetStore</h1>
 <div id="Content">
-    <h2>Welcome to JPetStore 6</h2>
+    <h2>Welcome to JPetStore</h2>
     <p><a href="mainForm">Enter the Store</a></p>
     <p><sub>Copyright Central South University</sub></p>
 </div>

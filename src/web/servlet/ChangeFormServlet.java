@@ -1,13 +1,17 @@
 package web.servlet;
 
 import domain.Account;
+import domain.Product;
 import service.AccountService;
+import service.CategoryService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 public class ChangeFormServlet extends HttpServlet {
     private static final String CHANGE_FORM = "/WEB-INF/jsp/account/change.jsp";
@@ -50,8 +54,12 @@ public class ChangeFormServlet extends HttpServlet {
         this.favouriteCategoryId = req.getParameter("favouriteCategoryId");
         this.languagePreference = req.getParameter("languagePreference");
         this.listOption = Boolean.parseBoolean(req.getParameter("listOption"));
-        Account account = new Account();
+
+        HttpSession session = req.getSession();
+
+        Account account = (Account) session.getAttribute("loginAccount");
         AccountService accountService = new AccountService();
+
         account.setUsername(this.username);
         account.setEmail(this.email);
         account.setStatus(this.status);
@@ -65,8 +73,18 @@ public class ChangeFormServlet extends HttpServlet {
         account.setFavouriteCategoryId(this.favouriteCategoryId);
         account.setLanguagePreference(this.languagePreference);
         account.setListOption(this.listOption);
-        account.setBannerOption(1);
+        account.setBannerOption(true);
+        // 注意：bottom中用户喜欢的内容也需要变动
+        account.setBannerName("<image src=\"images/banner_" + this.favouriteCategoryId.toLowerCase() + ".gif\">");
         accountService.updateAccount(account);
+
+        // 注意：用户喜欢的列表也需要变动
+        if (account.isListOption()){
+            CategoryService catalogService=new CategoryService();
+            List<Product> myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
+            session.setAttribute("myList", myList);
+        }
+
         req.getRequestDispatcher(EDIT_FORM).forward(req, resp);
     }
 }

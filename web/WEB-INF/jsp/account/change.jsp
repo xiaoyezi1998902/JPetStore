@@ -1,7 +1,7 @@
 <%@ include file="../common/top.jsp"%>
 <div id="Catalog">
     <h3>Account Information</h3>
-    <form action="changeform" method="post">
+    <form action="changeForm" method="post">
         Username:<input type="text" name="username" value="${sessionScope.loginAccount.username}"> <br />
         Email:<input type="text" name="email" value="${sessionScope.loginAccount.email}"> <br />
         Phone:<input type="text" name="phone" value="${sessionScope.loginAccount.phone}"> <br />

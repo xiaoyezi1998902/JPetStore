@@ -138,4 +138,21 @@
         <servlet-name>RegisterFormServlet</servlet-name>
         <url-pattern>/registerForm</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditFormServlet</servlet-name>
+        <servlet-class>web.servlet.EditFormServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeFormServlet</servlet-name>
+        <servlet-class>web.servlet.ChangeFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditFormServlet</servlet-name>
+        <url-pattern>/editForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeFormServlet</servlet-name>
+        <url-pattern>/changeForm</url-pattern>
+    </servlet-mapping>
 </web-app>

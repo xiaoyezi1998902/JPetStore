@@ -1,7 +1,10 @@
 package web.servlet;
 
+import domain.Account;
 import domain.Cart;
 import domain.CartItem;
+import persistence.CartDao;
+import persistence.implement.CartDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +22,8 @@ public class UpdateCartServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         Iterator<CartItem> cartItems = cart.getAllCartItems();
+        Account account = (Account) session.getAttribute("loginAccount");
+        CartDao cartDao = new CartDaoImpl();
 
         while(cartItems.hasNext()) {
             CartItem cartItem = (CartItem)cartItems.next();
@@ -26,9 +31,16 @@ public class UpdateCartServlet extends HttpServlet {
 
             try {
                 int quantity = Integer.parseInt(req.getParameter(itemId));
-                cart.setQuantityByItemId(itemId, quantity);
+                CartItem cartItem1 = cart.setQuantityByItemId(itemId, quantity);
+                if (account != null) {
+                    cartDao.updateCart(account.getUsername(), itemId, quantity, cartItem1.getTotal());
+                }
+
                 if (quantity < 1) {
                     cartItems.remove();
+                    if (account != null) {
+                        cartDao.removeItem(account.getUsername(), itemId);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

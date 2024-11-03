@@ -1,7 +1,10 @@
 package web.servlet;
 
+import domain.Account;
 import domain.Cart;
 import domain.Item;
+import persistence.CartDao;
+import persistence.implement.CartDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +24,15 @@ public class RemoveCartItemServlet extends HttpServlet {
         String workingItemId = req.getParameter("workingItemId");
 
         Item item = cart.removeItemById(workingItemId);
+
+        Account account = (Account) session.getAttribute("loginAccount");
+
+        CartDao cartDao = new CartDaoImpl();
+
+        if (account != null) {
+            cartDao.removeItem(account.getUsername(), workingItemId);
+        }
+
         if (item == null) {
             session.setAttribute("errorMsg", "Attempted to remove null CartItem from Cart.");
             req.getRequestDispatcher(ERROR_FORM).forward(req, resp);

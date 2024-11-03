@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class RegisterFormServlet extends HttpServlet {
-        private static final String NEW_ACCOUNT_FORM = "/WEB-INF/jsp/account/register.jsp";
+    private static final String NEW_ACCOUNT_FORM = "/WEB-INF/jsp/account/register.jsp";
     private static final String SIGN_ON_FORM = "/WEB-INF/jsp/account/signon.jsp";
     private String username;
     private String password;
@@ -40,17 +40,17 @@ public class RegisterFormServlet extends HttpServlet {
             account.setBannerName("555");
             account.setAddress1("555");
             account.setAddress2("555");
-            account.setBannerOption(1);
+            account.setBannerOption(true);
             account.setLanguagePreference("555");
             account.setFirstName("555");
             account.setLastName("555");
             account.setStatus("55");
             account.setFavouriteCategoryId("CATS");
+
             AccountService accountService = new AccountService();
             accountService.insertAccount(account);
             req.getRequestDispatcher(SIGN_ON_FORM).forward(req, resp);
-            }
-
+        }
     }
     private boolean validate(){
         if(this.username==null || this.username.equals("")){

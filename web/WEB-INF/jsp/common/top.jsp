@@ -35,10 +35,10 @@
             <c:if test="${sessionScope.loginAccount!=null}">
                 <a href="signOutForm"> Sign Out</a>
                 <img align="middle" src="images/separator.gif"/>
-                <a href="myAccountForm">My Account</a>
+                <a href="editForm">My Account</a>
                 <img align="middle" src="images/separator.gif"/>
             </c:if>
-            <a href="help.html">?</a>
+            <a href="help.jsp">?</a>
         </div>
     </div>
 

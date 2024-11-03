@@ -4,6 +4,8 @@ import domain.Account;
 import domain.Cart;
 import domain.CartItem;
 import domain.Order;
+import persistence.CartDao;
+import persistence.implement.CartDaoImpl;
 import service.OrderService;
 
 import javax.servlet.ServletException;
@@ -77,6 +79,8 @@ public class NewOrderServlet extends HttpServlet {
             order.setTotalPrice(cart.getSubTotal());
         }
 
+        CartDao cartDao = new CartDaoImpl();
+
         if (shippingAddressRequired) {
             shippingAddressRequired = false;
             req.getRequestDispatcher(SHIPPING_FORM).forward(req, resp);
@@ -86,6 +90,7 @@ public class NewOrderServlet extends HttpServlet {
             this.orderService.insertOrder(order);
             cart = new Cart();
             session.setAttribute("cart", cart);
+            cartDao.clearTheCart(account.getUsername());
             msg = "Thank you, your order has been submitted.";
             req.setAttribute("errorMsg", msg);
             req.getRequestDispatcher(VIEW_ORDER).forward(req, resp);

@@ -12,6 +12,7 @@ public class LineItem implements Serializable {
     private BigDecimal unitPrice;
     private Item item;
     private BigDecimal total;
+    private String description;
 
     public LineItem() {
     }
@@ -23,6 +24,7 @@ public class LineItem implements Serializable {
         this.unitPrice = cartItem.getItem().getListPrice();
         this.item = cartItem.getItem();
         this.total = cartItem.getTotal();
+        this.description = cartItem.getDescription();
     }
 
     public int getOrderId() {
@@ -63,6 +65,14 @@ public class LineItem implements Serializable {
 
     public Item getItem() {
         return this.item;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setItem(Item item) {

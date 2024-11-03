@@ -25,6 +25,13 @@ public class Cart implements Serializable {
         return this.itemList;
     }
 
+    public void setCartItemList(List<CartItem> cartItemList) {
+        for (CartItem cartItem : cartItemList) {
+            itemList.add(cartItem);
+            this.itemMap.put(cartItem.getItem().getItemId(), cartItem);
+        }
+    }
+
     public int getNumberOfItems() {
         return this.itemList.size();
     }
@@ -37,7 +44,7 @@ public class Cart implements Serializable {
         return this.itemMap.containsKey(itemId);
     }
 
-    public void addItem(Item item, boolean isInStock) {
+    public CartItem addItem(Item item, boolean isInStock) {
         CartItem cartItem = (CartItem)this.itemMap.get(item.getItemId());
         if (cartItem == null) {
             cartItem = new CartItem();
@@ -49,6 +56,7 @@ public class Cart implements Serializable {
         }
 
         cartItem.incrementQuantity();
+        return cartItem;
     }
 
     public Item removeItemById(String itemId) {
@@ -61,14 +69,16 @@ public class Cart implements Serializable {
         }
     }
 
-    public void incrementQuantityByItemId(String itemId) {
+    public CartItem incrementQuantityByItemId(String itemId) {
         CartItem cartItem = (CartItem)this.itemMap.get(itemId);
         cartItem.incrementQuantity();
+        return cartItem;
     }
 
-    public void setQuantityByItemId(String itemId, int quantity) {
+    public CartItem setQuantityByItemId(String itemId, int quantity) {
         CartItem cartItem = (CartItem)this.itemMap.get(itemId);
         cartItem.setQuantity(quantity);
+        return cartItem;
     }
 
     public BigDecimal getSubTotal() {

@@ -9,8 +9,17 @@ public class CartItem implements Serializable {
     private int quantity;
     private boolean inStock;
     private BigDecimal total;
+    private String description;
 
     public CartItem() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isInStock() {
@@ -19,6 +28,10 @@ public class CartItem implements Serializable {
 
     public void setInStock(boolean inStock) {
         this.inStock = inStock;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public BigDecimal getTotal() {

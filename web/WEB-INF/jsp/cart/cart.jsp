@@ -9,6 +9,11 @@
     <div id="Cart">
 
         <h2>Shopping Cart</h2>
+
+        <c:if test="${sessionScope.reminder !=null}">
+            <p><font color="red">${sessionScope.reminder}</font></p>
+        </c:if>
+
         <form action="updateCart" method="post">
             <table>
                 <tr>
@@ -31,10 +36,13 @@
                 <c:forEach var="cartItem" items="${sessionScope.cart.cartItems}">
                     <tr>
                         <td><a href="itemForm?itemId=${cartItem.item.itemId}">${cartItem.item.itemId}</a></td>
-                        <td>${cartItem.item.product.productId}</td>
-                        <td>${cartItem.item.attribute1} ${cartItem.item.attribute2}
-                                ${cartItem.item.attribute3} ${cartItem.item.attribute4}
-                                ${cartItem.item.attribute5} ${cartItem.item.product.name}</td>
+                        <td>${cartItem.item.productId}</td>
+                        <td>
+<%--                                ${cartItem.item.attribute1} ${cartItem.item.attribute2}--%>
+<%--                                ${cartItem.item.attribute3} ${cartItem.item.attribute4}--%>
+<%--                                ${cartItem.item.attribute5} ${cartItem.item.product.name}--%>
+                            ${cartItem.description}
+                        </td>
                         <td>${cartItem.inStock}</td>
                         <td><input type="text" name="${cartItem.item.itemId}" value="${cartItem.quantity}"/></td>
                         <td><fmt:formatNumber value="${cartItem.item.listPrice}"

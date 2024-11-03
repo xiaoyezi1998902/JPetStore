@@ -51,6 +51,7 @@ public class OrderService {
         for(i = 0; i < order.getLineItems().size(); ++i) {
             lineItem = (LineItem)order.getLineItems().get(i);
             lineItem.setOrderId(order.getOrderId());
+
             this.lineItemDao.insertLineItem(lineItem);
         }
     }

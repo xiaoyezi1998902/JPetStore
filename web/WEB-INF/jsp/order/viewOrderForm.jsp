@@ -121,12 +121,13 @@
                             <a href="itemForm?itemId=${lineItem.item.itemId}">${lineItem.item.itemId}</a>
                             </td>
                             <td><c:if test="${lineItem.item != null}">
-                                ${lineItem.item.attribute1}
-                                ${lineItem.item.attribute2}
-                                ${lineItem.item.attribute3}
-                                ${lineItem.item.attribute4}
-                                ${lineItem.item.attribute5}
-                                ${lineItem.item.product.name}
+<%--                                ${lineItem.item.attribute1}--%>
+<%--                                ${lineItem.item.attribute2}--%>
+<%--                                ${lineItem.item.attribute3}--%>
+<%--                                ${lineItem.item.attribute4}--%>
+<%--                                ${lineItem.item.attribute5}--%>
+<%--                                ${lineItem.item.product.name}--%>
+                                    ${lineItem.description}
                             </c:if> <c:if test="${lineItem.item == null}">
                                 <i>{description unavailable}</i>
                             </c:if></td>
