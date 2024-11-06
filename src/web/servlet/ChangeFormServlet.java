@@ -83,6 +83,8 @@ public class ChangeFormServlet extends HttpServlet {
             CategoryService catalogService=new CategoryService();
             List<Product> myList = catalogService.getProductListByCategory(account.getFavouriteCategoryId());
             session.setAttribute("myList", myList);
+        } else {
+            session.setAttribute("myList", null);  // 有可能更改为不需要提示列表
         }
 
         req.getRequestDispatcher(EDIT_FORM).forward(req, resp);

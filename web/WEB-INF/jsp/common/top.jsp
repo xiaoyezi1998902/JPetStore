@@ -33,7 +33,7 @@
                 <img align="middle" src="images/separator.gif"/>
             </c:if>
             <c:if test="${sessionScope.loginAccount!=null}">
-                <a href="signOutForm"> Sign Out</a>
+                <a href="signOut"> Sign Out</a>
                 <img align="middle" src="images/separator.gif"/>
                 <a href="editForm">My Account</a>
                 <img align="middle" src="images/separator.gif"/>

@@ -288,7 +288,6 @@ public class Order implements Serializable {
             CartItem cartItem = (CartItem)i.next();
             this.addLineItem(cartItem);
         }
-
     }
 
     public void addLineItem(CartItem cartItem) {

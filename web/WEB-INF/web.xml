@@ -155,4 +155,31 @@
         <servlet-name>ChangeFormServlet</servlet-name>
         <url-pattern>/changeForm</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>VerificationCode</servlet-name>
+        <servlet-class>web.servlet.VerificationCode</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VerificationCode</servlet-name>
+        <url-pattern>/verificationCode</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetTheOrder</servlet-name>
+        <servlet-class>web.servlet.GetTheOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetTheOrder</servlet-name>
+        <url-pattern>/getTheOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignOutFormServlet</servlet-name>
+        <servlet-class>web.servlet.SignOutFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOutFormServlet</servlet-name>
+        <url-pattern>/signOut</url-pattern>
+    </servlet-mapping>
 </web-app>

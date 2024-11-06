@@ -1,11 +1,10 @@
 package web.servlet;
 
-import domain.Account;
-import domain.Cart;
-import domain.CartItem;
-import domain.Order;
+import domain.*;
 import persistence.CartDao;
+import persistence.LogDao;
 import persistence.implement.CartDaoImpl;
+import persistence.implement.LogDaoImpl;
 import service.OrderService;
 
 import javax.servlet.ServletException;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
-import java.util.Iterator;
 
 public class NewOrderServlet extends HttpServlet {
     private static final String SHIPPING_FORM = "/WEB-INF/jsp/order/shippingForm.jsp";
@@ -31,8 +29,18 @@ public class NewOrderServlet extends HttpServlet {
 
         Order order = (Order) session.getAttribute("order");
 
+        Cart cart = (Cart) session.getAttribute("cart");
+        boolean shippingAddressRequired = req.getParameter("shippingAddressRequired") != null;
+        String confirmed = req.getParameter("confirmed");
+        String looked = req.getParameter("looked");
+        String msg = null;
+        Account account = (Account) session.getAttribute("loginAccount");
+        Date date = new Date(System.currentTimeMillis());
+
         if (order == null) {
             order = new Order();
+            order.initOrder(account, cart);
+
             order.setCardType(req.getParameter("order.cardType"));
             order.setCreditCard(req.getParameter("order.creditCard"));
             order.setExpiryDate(req.getParameter("order.expiryDate"));
@@ -48,14 +56,11 @@ public class NewOrderServlet extends HttpServlet {
             session.setAttribute("order", order);
         }
 
-        Cart cart = (Cart) session.getAttribute("cart");
-        boolean shippingAddressRequired = req.getParameter("shippingAddressRequired") != null;
-        String confirmed = req.getParameter("confirmed");
-        String msg = null;
-        Account account = (Account) session.getAttribute("loginAccount");
-        Date date = new Date(System.currentTimeMillis());
+        if (looked == null) {
+            looked = "";
+        }
 
-        if (!shippingAddressRequired && (confirmed == null || confirmed.equals(""))) {
+        if (looked.equals("true") && (confirmed == null || confirmed.equals(""))) {
             order.setUsername(account.getUsername());
             order.setOrderDate(date);
             order.setShipToFirstName(req.getParameter("order.shipToFirstName"));
@@ -69,12 +74,6 @@ public class NewOrderServlet extends HttpServlet {
             order.setCourier("UPS");
             order.setStatus("P");
             order.setLocale("onlineShop");
-
-            Iterator<CartItem> iterator = cart.getCartItems();
-            while (iterator.hasNext()) {
-                CartItem cartItem = iterator.next();
-                order.addLineItem(cartItem);
-            }
 
             order.setTotalPrice(cart.getSubTotal());
         }
@@ -91,6 +90,15 @@ public class NewOrderServlet extends HttpServlet {
             cart = new Cart();
             session.setAttribute("cart", cart);
             cartDao.clearTheCart(account.getUsername());
+
+            Log log = new Log();
+            log.setLogTime(new Date());
+            log.setUserName(account.getUsername());
+            log.setTitle("订单信息");
+            log.setContent("用户" + account.getUsername() + "创建了id号为" + order.getOrderId() + "的订单");
+            LogDao logDao = new LogDaoImpl();
+            logDao.InsertLog(log);
+
             msg = "Thank you, your order has been submitted.";
             req.setAttribute("errorMsg", msg);
             req.getRequestDispatcher(VIEW_ORDER).forward(req, resp);

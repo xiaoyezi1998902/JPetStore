@@ -1,7 +1,7 @@
 <%@ include file="../common/top.jsp"%>
 
 <div id="Catalog">
-  <form action="newOrder" method="post">
+  <form action="newOrder?looked=true" method="post">
 
   <table>
     <tr>

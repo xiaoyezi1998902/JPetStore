@@ -18,7 +18,8 @@ public class ProductDaoImpl implements ProductDao {
             "SELECT PRODUCTID, NAME, DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE PRODUCTID = ?";
 
     public static final String SEARCH_PRODUCT_LIST =
-            "SELECT PRODUCTID, NAME, DESCN as description, CATEGORY as categoryId FROM PRODUCT WHERE lower(name) like ?";
+            "SELECT PRODUCTID, NAME, DESCN as description, CATEGORY as categoryId FROM PRODUCT " +
+                    "WHERE lower(name) like \"%\" ? \"%\"";
 
     @Override
     public List<Product> getProductListByCategory(String var1) {

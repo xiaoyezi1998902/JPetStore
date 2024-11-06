@@ -7,7 +7,10 @@
         </c:if>
         <p>
             Username:<input type="text" name="username"> <br />
-            Password:<input type="password" name="password">
+            Password:<input type="password" name="password"><br>
+            VerificationCode:
+            <input type="text" name="vCode" size="5" maxlength="4"/>
+            <a href="registerForm"><img border="0" src="verificationCode" name="checkcode"></a>
         </p>
         <input type="submit" value="Login">
     </form>

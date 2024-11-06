@@ -54,7 +54,8 @@
             <td>${sessionScope.loginAccount.listOption}</td>
         </tr>
     </table>
-    <a href="changeForm"><input type="submit" name="new" value="change Account Information"></a>
+    <a href="changeForm"><input type="submit" name="new" value="change Account Information"></a><br>
+    <a href="viewOrder">myOrder</a>
 </div>
 
 <%@ include file="../common/bottom.jsp"%>

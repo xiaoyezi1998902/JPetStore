@@ -1,6 +1,5 @@
 package web.servlet;
 
-import domain.Account;
 import domain.Order;
 import service.OrderService;
 
@@ -10,23 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
-public class ViewOrderServlet extends HttpServlet {
-    private static final String VIEW_MY_ORDER = "/WEB-INF/jsp/order/myOrders.jsp";
-
+public class GetTheOrder extends HttpServlet {
+    private static final String LOOK_THE_ORDER = "/WEB-INF/jsp/order/lookTheOrder.jsp";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        String msg = null;
-
-        Account account = (Account) session.getAttribute("loginAccount");
+        int orderId = Integer.parseInt(req.getParameter("orderId"));
 
         OrderService orderService = new OrderService();
 
-        List<Order> orderList = orderService.getOrdersByUsername(account.getUsername());
-        session.setAttribute("orderList", orderList);
+        Order order = orderService.getOrder(orderId);
+        session.setAttribute("theOrder", order);
 
-        req.getRequestDispatcher(VIEW_MY_ORDER).forward(req, resp);
+        req.getRequestDispatcher(LOOK_THE_ORDER).forward(req, resp);
     }
 }
